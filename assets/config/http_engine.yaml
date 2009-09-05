@@ -1,0 +1,18 @@
+---
+testing:
+  interface:
+    module: ServerSimple
+    args:
+      host: localhost
+      port: 9999
+
+  middleware:
+    -
+      module: 'HTTP::Engine::Middleware::ModuleReload'
+      option: {}
+    -
+      module: 'HTTP::Engine::Middleware::Static'
+      option:
+        regexp: '^.+\.(txt|png|gif|jpeg|jpg|swf|js|css)$'
+        docroot: /Users/nekokak/project/Idiot/assets/htdocs/
+
