@@ -1,10 +1,10 @@
 package Idiot::Web::Handler;
-use Smoker;
-use base 'Smoker::Web::Handler';
-use Idiot::Web::Component;
+use Kamui::Web::Handler;
 
-sub web_component { 'Idiot::Web::Component' }
-sub base_name { 'Idiot' }
-
+use_container 'Idiot::Container';
+use_plugins [qw/Encode/];
+use_view 'Kamui::View::TT';
+use_dispatcher 'Idiot::Web::Dispatcher';
+ 
 1;
 

@@ -1,8 +1,0 @@
----
-testing:
-  connect_info:
-    dsn: 'dbi:mysql:idiot;mysql_read_default_file=/etc/mysql/my.cnf;'
-    username: you
-    password: passwd
-    connection_options:
-
