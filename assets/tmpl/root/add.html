@@ -2,15 +2,36 @@
 %]
 
   <div class="title">paste!</div>
+
   <form action="/add" method="post">
     <table>
       <tr>
         <th>title</th>
-        <td><input type="text" size="90" name="title" /></td>
+        <td>
+            [% msgs = validator.get_error_message_from_param('title') %]
+            [% IF msgs %]
+              <ul>
+                  [% FOR msg IN msgs %]
+                  <li>[% msg %]</li>
+                  [% END %]
+              </ul>
+            [% END %]
+            <input type="text" size="90" name="title" />
+        </td>
       </tr>
       <tr>
         <th>body</th>
-        <td><textarea rows="25" cols="90" name="body"></textarea></td>
+        <td>
+            [% msgs = validator.get_error_message_from_param('body') %]
+            [% IF msgs %]
+              <ul>
+                  [% FOR msg IN msgs %]
+                  <li>[% msg %]</li>
+                  [% END %]
+              </ul>
+            [% END %]
+            <textarea rows="25" cols="90" name="body"></textarea>
+        </td>
       </tr>
       <tr>
         <td colspan="2"><input type="submit" value="paste it!"></td>

@@ -15,13 +15,14 @@ sub do_add {
     my ($class, $c, ) = @_;
 
     if ($c->req->is_post_request) {
-        my $page = api('Page')->write(
-            {
-                title => $c->req->param('title'),
-                body  => $c->req->param('body'),
-            }
-        );
-        
+
+        my $validator = $c->validator->valid('page')->add;
+        if ($validator->has_error) {
+            $c->stash->{validator} = $validator;
+            return;
+        }
+
+        my $page = api('Page')->write($c->req->params);
         return $c->redirect('/show',{page_guid => $page->guid});
     }
 }

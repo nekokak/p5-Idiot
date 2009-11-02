@@ -22,6 +22,17 @@ return +{
         username => 'user',
         password => 'pass',
     },
+    validator_message => +{
+        param => +{
+            title => 'タイトル',
+            body  => '本文'
+        },
+        function => +{
+            not_null => '[_1]が空です',
+        },
+        message => +{
+        },
+    },
     timezone => 'Asia/Tokyo',
 };
 
