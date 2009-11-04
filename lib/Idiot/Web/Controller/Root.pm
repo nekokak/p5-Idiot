@@ -14,6 +14,11 @@ sub do_show {
 sub do_add {
     my ($class, $c, ) = @_;
 
+=pod
+    my $form = api('Form')->add($c->req);
+    $form->submitted_and_valid;
+    $c->stash->{form} = $form;
+=cut
     if ($c->req->is_post_request) {
 
         my $validator = $c->validator->valid('page')->add;

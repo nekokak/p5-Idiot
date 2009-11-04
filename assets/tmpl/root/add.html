@@ -8,6 +8,7 @@
       <tr>
         <th>title</th>
         <td>
+<!--            [% form.render('title') | html_unescape %] -->
             [% msgs = validator.get_error_message_from_param('title') %]
             [% IF msgs %]
               <ul>
@@ -22,6 +23,7 @@
       <tr>
         <th>body</th>
         <td>
+<!--            [% form.render('body') | html_unescape %]-->
             [% msgs = validator.get_error_message_from_param('body') %]
             [% IF msgs %]
               <ul>

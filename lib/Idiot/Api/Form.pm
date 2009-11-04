@@ -20,7 +20,12 @@ sub add {
 
     $self->form(
         $req => (
-            TextField(name => 'title', label => 'title'),
+            TextField(name => 'title', label => 'title'
+                ,
+constraints => [
+                    'NOT_NULL',
+                ],
+            ),
             TextField(name => 'body' , label => 'body', widget => 'textarea', attr => {rows => '25', cols => '90'}  ),
         )
     );
