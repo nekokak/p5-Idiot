@@ -1,6 +1,6 @@
-[% WRAPPER wrapper.html;
-%]
+? extends 'base.html'
 
+? block content => sub {
   <div class="title">paste!</div>
 
   <form action="/add" method="post">
@@ -8,30 +8,28 @@
       <tr>
         <th>title</th>
         <td>
-<!--            [% form.render('title') | html_unescape %] -->
-            [% msgs = validator.get_error_message_from_param('title') %]
-            [% IF msgs %]
+? if ($s->{validator}) {
+? my @title_msgs = $s->{validator}->get_error_message_from_param('title')
               <ul>
-                  [% FOR msg IN msgs %]
-                  <li>[% msg %]</li>
-                  [% END %]
+? for my $msg (@title_msgs) {
+                  <li><?= $msg ?></li>
+? }
               </ul>
-            [% END %]
+? }
             <input type="text" size="90" name="title" />
         </td>
       </tr>
       <tr>
         <th>body</th>
         <td>
-<!--            [% form.render('body') | html_unescape %]-->
-            [% msgs = validator.get_error_message_from_param('body') %]
-            [% IF msgs %]
+? if ($s->{validator}) {
+? my @body_msgs = $s->{validator}->get_error_message_from_param('body')
               <ul>
-                  [% FOR msg IN msgs %]
-                  <li>[% msg %]</li>
-                  [% END %]
+? for my $msg (@body_msgs) {
+                  <li><?= $msg ?></li>
+? }
               </ul>
-            [% END %]
+? }
             <textarea rows="25" cols="90" name="body"></textarea>
         </td>
       </tr>
@@ -40,5 +38,4 @@
       </tr>
     </table>
   </form>
-
-[% END %]
+? }

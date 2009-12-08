@@ -7,14 +7,8 @@ my $home = container('home');
 
 return +{
     view => {
-        tt   => +{
-            path    => $home->file('assets/tmpl')->stringify,
-            options => '',
-            filters => +{
-                html_unescape => sub {
-                    HTML::Entities::decode_entities(shift);
-                },
-            },
+        mt => +{
+            path => $home->file('assets/tmpl')->stringify,
         },
     },
     connection_info => +{

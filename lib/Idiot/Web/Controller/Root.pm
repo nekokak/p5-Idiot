@@ -2,23 +2,21 @@ package Idiot::Web::Controller::Root;
 use Kamui::Web::Controller -base;
 use Idiot::Container qw/api/;
 
-sub do_index { }
+sub do_index {
+    my ($class, $c, ) = @_;
+    $c->redirect('/add');
+}
 
 sub do_show {
     my ($class, $c, ) = @_;
 
     $c->stash->{page} = api('Page')->get($c->req->param('page_guid'))
-      or $c->redirect('/');
+      or $c->redirect('/add');
 }
 
 sub do_add {
     my ($class, $c, ) = @_;
 
-=pod
-    my $form = api('Form')->add($c->req);
-    $form->submitted_and_valid;
-    $c->stash->{form} = $form;
-=cut
     if ($c->req->is_post_request) {
 
         my $validator = $c->validator->valid('page')->add;

@@ -1,7 +1,8 @@
-[% WRAPPER wrapper.html;
-%]
+? extends 'base.html';
 
-  <h2>[% page.title %]</h2>
-  [% page.body | html_unescape %]
+? block content => sub {
 
-[% END %]
+  <h2><?= $s->{page}->title ?></h2>
+  <?= raw_string($s->{page}->body) ?>
+
+? }
