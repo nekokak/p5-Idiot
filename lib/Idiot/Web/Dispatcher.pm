@@ -2,7 +2,7 @@ package Idiot::Web::Dispatcher;
 use Kamui::Web::Dispatcher;
 
 on '/' => run {
-    return 'Root', 'index', FALSE, +{};
+    return 'Root', 'add', FALSE, +{};
 };
 
 on '/show' => run {

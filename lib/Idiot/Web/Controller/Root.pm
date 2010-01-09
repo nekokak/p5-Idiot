@@ -2,11 +2,6 @@ package Idiot::Web::Controller::Root;
 use Kamui::Web::Controller -base;
 use Idiot::Container qw/api/;
 
-sub do_index {
-    my ($class, $c, ) = @_;
-    $c->redirect('/add');
-}
-
 sub do_show {
     my ($class, $c, ) = @_;
 
