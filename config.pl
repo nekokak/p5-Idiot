@@ -11,7 +11,7 @@ return +{
             path => $home->file('assets/tmpl')->stringify,
         },
     },
-    connection_info => +{
+    datasource => +{
         dsn      => 'dbi:mysql:idiot',
         username => 'user',
         password => 'pass',

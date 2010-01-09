@@ -4,14 +4,12 @@ use DateTime;
 use DateTime::Format::Strptime;
 use DateTime::Format::MySQL;
 use Data::GUID::URLSafe;
-use Text::Hatena;
 use Idiot::Container;
 
 sub pre_insert_hook {
     my ( $class, $args ) = @_;
     $args->{guid} = Data::GUID->new->as_base64_urlsafe;
-    $args->{created_at} = container('now');
-    warn $args->{created_at};
+    $args->{created_at} = DateTime->now(time_zone => container('timezone'));
 }
 
 install_table page => schema {
@@ -22,18 +20,12 @@ install_table page => schema {
 
 install_utf8_columns qw/title body/;
 
-install_inflate_rule '^body$' => callback {
-    inflate {
-        Text::Hatena->parse(shift)
-    };
-};
-
 install_inflate_rule '^.+_at$' => callback {
     inflate {
         my $value = shift;
         my $dt = DateTime::Format::Strptime->new(
             pattern   => '%Y-%m-%d %H:%M:%S',
-            time_zone => container('conf')->{timezone},
+            time_zone => container('timezone'),
         )->parse_datetime($value);
         return DateTime->from_object( object => $dt );
     };

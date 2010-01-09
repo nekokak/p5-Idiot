@@ -3,6 +3,6 @@
 ? block content => sub {
 
   <h2><?= $s->{page}->title ?></h2>
-  <?= raw_string($s->{page}->body) ?>
+  <pre><?= $s->{page}->body ?></pre>
 
 ? }
